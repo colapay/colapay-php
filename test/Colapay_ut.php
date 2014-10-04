@@ -51,7 +51,11 @@ class TestOfColapay extends UnitTestCase {
 
         $colapay = Colapay::key_secret_mode( $_API_KEY, $_API_SECRET );
         $colapay->set_requestor( $requestor );
-        $response = $colapay->create_invoice( "first invoice", 100, "cny", "https://www.baidu.com", "https://www.qq.com" );
+        $options = array(
+                "callback_url" => "https://www.baidu.com",
+                "redirect_url" => "https://www.qq.com"
+                );
+        $response = $colapay->create_invoice( "first invoice", 100, "cny", $options );
         $this->assertEqual( $response->invoice->id, '542e10f4e29c164845d57e5c');
         $this->assertEqual( $response->invoice->status, 'created' );
         $this->assertEqual( $response->invoice->callback_url, 'https://www.baidu.com' );

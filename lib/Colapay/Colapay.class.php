@@ -60,22 +60,16 @@ class Colapay {
         return $this->_rpc->request( "PUT", $path, $params );
     }
 
-    public function create_invoice ( $name, $price, $currency, $callback_url, $redirect_url,
-            $customer_email = null, $customer_phone = null ) {
+    public function create_invoice( $name, $price, $currency, $options = array() ) {
         // required parameters
         $params = array(
                 "name" => $name,
                 "price" => $price,
-                "currency" => $currency,
-                "callback_url" => $callback_url,
-                "redirect_url" => $redirect_url
+                "currency" => $currency
                 );
         // optional parameters
-        if ( null !== $customer_email ) {
-            $params['customer_email'] = $customer_email;
-        }
-        if ( null !== $customer_phone ) {
-            $params['customer_phone'] = $customer_phone;
+        foreach ( $options as $option => $val ) {
+            $params[$option] = $val;
         }
 
         $res = new stdClass();
@@ -99,7 +93,7 @@ class Colapay {
         return $this->get( "invoice/" . $invoice_id, array() )->invoice->status;
     }
 
-    public function create_item ( $name, $price, $currency, $desc = null, $custom_id = null ) {
+    public function create_item( $name, $price, $currency, $options = array() ) {
         // required parameters
         $params = array(
                 "name" => $name,
@@ -107,11 +101,8 @@ class Colapay {
                 "currency" => $currency
                 );
         // optional parameters
-        if ( null !== $desc ) {
-            $params['desc'] = $desc;
-        }
-        if ( null !== $custom_id ) {
-            $params['custom_id'] = $custom_id;
+        foreach ( $options as $option => $val ) {
+            $params[$option] = $val;
         }
 
         $res = new stdClass();
