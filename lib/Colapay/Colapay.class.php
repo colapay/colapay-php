@@ -3,7 +3,7 @@
 class Colapay {
 
     const API_HOST_4_PRODUCTION = 'https://colapay.com';
-    const API_HOST_4_DEVELOPMENT = 'http://192.168.0.106:3000';
+    const API_HOST_4_DEVELOPMENT = '';
     const API_PATH = '/api/v1/';
 
     const DEBUG = false;

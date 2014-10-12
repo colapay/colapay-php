@@ -1,7 +1,57 @@
-colapay-php
+Colapay PHP client library
 ===========
 
-Colapay php client library
+## Quick Start Guide
+
+This guide walks through the steps of using the PHP library.
+
+1. Get the latest code
+
+    git clone https://github.com/bobofzhang/colapay-php
+
+2. Get API Key and Secret by [creating an account on Colapay](www.colapay.com).
+
+3. Add the following to your PHP script:
+
+    require_once("/path/to/colapay-php/lib/Colapay.php");
+
+4. Use API Key and Secret to create an instance of the client:
+
+```php
+$colapay = Colapay::key_secret_mode( $_ENV['API_KEY'], $_ENV['API_SECRET'] );
+```
+
+5. Use the client to create an invoice by the following:
+
+```php
+$name = "the first invoice";
+$price = "100";
+$currency = "cny";
+$options = array(
+        "callback_url" => "some url on your site to accept & process information sent from Colapay",
+        "redirect_url" => "some url on your site the customer will be redirected to when the invoice is paid"
+        );
+
+$response = $colapay->create_invoice( $name, $price, $currency, $options );
+```
+
+The return value of create_invoice is a JSON object. You can get the invoice id by
+
+```php
+$id = $response->invoice->id;
+```
+
+And you can get the status of invoice created by:
+
+```php
+$status = $colapay->get_invoice_status( $invoice_id );
+```
+
+That's all you need to use this PHP library to create an invoice, get invoice status etc.
+There is a complete key secret example in example dir.
+
+For more API interface and parameters explanization, please reference
+[the complete Colapay API](www.colapay.com/api/v1).
 
 ## Testing
 
