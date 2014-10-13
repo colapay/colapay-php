@@ -80,6 +80,7 @@ class Colapay {
         }
         if ( ! $response->success ) {
             $res->success = false;
+            $res->error = $response->error;
         } else {
             $res->success = true;
             $res->invoice = $response->invoice;
@@ -113,6 +114,7 @@ class Colapay {
         }
         if ( ! $response->success ) {
             $res->success = false;
+            $res->error = $response->error;
         } else {
             $res->success = true;
             $res->item = $response->item;
