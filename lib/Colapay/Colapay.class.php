@@ -91,7 +91,7 @@ class Colapay {
     }
 
     public function get_invoice_status( $invoice_id ) {
-        return $this->get( "invoice/" . $invoice_id, array() )->invoice->status;
+        return $this->get( "invoice/" . $invoice_id, array() );
     }
 
     public function create_item( $name, $price, $currency, $options = array() ) {

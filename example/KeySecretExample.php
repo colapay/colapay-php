@@ -28,7 +28,7 @@ echo '<br><br>';
 if ( $response->success ) {
     echo 'invoice_id: ' . $response->invoice->id;
     echo '<br><br>';
-    echo 'invoice_status: ' . $colapay->get_invoice_status( $response->invoice->id );
+    echo 'invoice_status: ' . $colapay->get_invoice_status( $response->invoice->id )->invoice->status;
     echo '<br><br>';
 } else {
     echo "create invoice failed";
