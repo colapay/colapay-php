@@ -108,8 +108,9 @@ class Colapay_Rpc {
         // CURL options
         $curl_opts[CURLOPT_URL] = $url;
         $curl_opts[CURLOPT_HTTPHEADER] = $headers;
-        $curl_opts[CURLOPT_CAINFO] = dirname( __FILE__ ) . '/ca-colapay.crt';
+        $curl_opts[CURLOPT_CAINFO] = dirname( __FILE__ ) . '/colapay.crt';
         $curl_opts[CURLOPT_RETURNTRANSFER] = true;
+        //$curl_opts[CURLOPT_SSL_VERIFYPEER] = false;
 
         // do request
         curl_setopt_array( $curl, $curl_opts );

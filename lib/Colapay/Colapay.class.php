@@ -2,7 +2,7 @@
 
 class Colapay {
 
-    const API_HOST_4_PRODUCTION = 'https://colapay.com';
+    const API_HOST_4_PRODUCTION = 'https://dev.colapay.com';
     const API_HOST_4_DEVELOPMENT = '';
     const API_PATH = '/api/v1/';
 
@@ -60,12 +60,13 @@ class Colapay {
         return $this->_rpc->request( "PUT", $path, $params );
     }
 
-    public function create_invoice( $name, $price, $currency, $options = array() ) {
+    public function create_invoice( $name, $price, $currency, $merchant, $options = array() ) {
         // required parameters
         $params = array(
                 "name" => $name,
                 "price" => $price,
-                "currency" => $currency
+                "currency" => $currency,
+                "merchant" => $merchant
                 );
         // optional parameters
         foreach ( $options as $option => $val ) {
@@ -119,6 +120,15 @@ class Colapay {
             $res->success = true;
             $res->item = $response->item;
         }
+
+        return $res;
+    }
+
+    public function get_user_info() {
+        $res = new stdClass();
+        $response = $this->get( "info", array() );
+        $res->success = true;
+        $res->user = $response;
 
         return $res;
     }
