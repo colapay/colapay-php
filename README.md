@@ -1,4 +1,4 @@
-Colapay PHP client library
+ColaPay PHP client library
 ===========
 
 ## Quick Start Guide
@@ -9,7 +9,7 @@ This guide walks through the steps of using this PHP library.
 
     git clone https://github.com/bobofzhang/colapay-php.git
 
-* Get an API Key and API Secret by [creating an account on Colapay](https://colapay.com).
+* Get an API Key and API Secret by [creating an account on ColaPay](https://www.colapay.com).
 
 * Add the following code in your PHP script:
 
@@ -27,12 +27,14 @@ $colapay = Colapay::key_secret_mode( $_ENV['API_KEY'], $_ENV['API_SECRET'] );
 $name = "the first invoice";
 $price = "100";
 $currency = "cny";
+$merchant = "0123456789";
 $options = array(
-        "callback_url" => "some url on your site to accept & process information sent from Colapay",
+        "custom_id" => "some id on your site to record this invoice/order",
+        "callback_url" => "some url on your site to accept & process information sent from ColaPay",
         "redirect_url" => "some url on your site to where the customer will be redirected when the invoice is paid"
         );
 
-$response = $colapay->create_invoice( $name, $price, $currency, $options );
+$response = $colapay->create_invoice( $name, $price, $currency, $merchant, $options );
 ```
 
 The return value of create_invoice is a JSON object. You can get the invoice id by
@@ -44,14 +46,14 @@ $id = $response->invoice->id;
 And you can get the status of existing invoice by:
 
 ```php
-$status = $colapay->get_invoice_status( $invoice_id );
+$status = $colapay->get_invoice_status( $invoice_id )->invoice->status;
 ```
 
 That's all you need to use this PHP library to create an invoice, get invoice status etc.
 There is a complete key secret example in example dir.
 
 For more API interface and parameters explanation, please refer to
-[the complete Colapay API](https://colapay.com/api/v1).
+[the complete ColaPay API](https://www.colapay.com/api/v1).
 
 ## Testing
 
