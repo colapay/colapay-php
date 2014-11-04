@@ -7,9 +7,9 @@ This guide walks through the steps of using this PHP library.
 
 * Get the latest code
 
-    git clone https://github.com/bobofzhang/colapay-php.git
+    git clone https://github.com/colapay/colapay-php.git
 
-* Get an API Key and API Secret by [creating an account on ColaPay](https://www.colapay.com).
+* Get an API Key and API Secret by creating an account on [ColaPay](https://www.colapay.com).
 
 * Add the following code in your PHP script:
 
