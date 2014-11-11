@@ -55,7 +55,7 @@ class TestOfColapay extends UnitTestCase {
                 "callback_url" => "https://www.baidu.com",
                 "redirect_url" => "https://www.qq.com"
                 );
-        $response = $colapay->create_invoice( "first invoice", 100, "cny", "54290bde8c068a0000b1ddd5", $options );
+        $response = $colapay->create_invoice( "first invoice", 100, "cny", $options );
         $this->assertEqual( $response->invoice->id, '542e10f4e29c164845d57e5c');
         $this->assertEqual( $response->invoice->status, 'created' );
         $this->assertEqual( $response->invoice->callback_url, 'https://www.baidu.com' );

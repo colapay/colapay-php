@@ -16,7 +16,6 @@ $name = "first invoice中文能搞定吗";
 echo mb_detect_encoding( $name ) . '<br><br>';
 $price = "100";
 $currency = "cny";
-$merchant = "0123456789";
 $options = array(
         "custom_id" => "10000",
         "callback_url" => "https://www.baidu.com",
@@ -24,7 +23,7 @@ $options = array(
         );
 
 // create invoice
-$response = $colapay->create_invoice( $name, $price, $currency, $merchant, $options );
+$response = $colapay->create_invoice( $name, $price, $currency, $options );
 var_dump( $response );
 echo '<br><br>';
 if ( $response->success ) {
